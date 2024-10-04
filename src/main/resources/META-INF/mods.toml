@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[47,)"  # Minecraft 1.20.1 Forge 版本
+license="MIT"
+
+[[mods]]
+modId="kinetic_pixel_patch"
+version="1.0.0"
+displayName="Kinetic Pixel Patch Mod"
+description='''This mod patches the behavior of the FirearmworktableBlock in the Kinetic Pixel mod using Mixin.'''
+
+[[dependencies.kinetic_pixel_patch]]
+modId="kinetic_pixel"
+mandatory=true
+versionRange="[1.0.0,)"  # 确保与 kinetic_pixel 1.0.0 或更高版本兼容
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.kinetic_pixel_patch]]
+modId="geckolib"
+mandatory=true
+versionRange="[4.4.9,)"  # 确保与 Geckolib 4.4.9 或更高版本兼容
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.kinetic_pixel_patch]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.21)"
+ordering="NONE"
+side="BOTH"
