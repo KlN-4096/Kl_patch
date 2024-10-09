@@ -1,11 +1,11 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.klmod.mixin",
+  "package": "com.klmod.patch.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "kinetic_pixel_patch.refmap.json",
+  "refmap": "kl_patch.refmap.json",
   "mixins": [
-    "FirearmworktableBlockMixin"
+    "RefinedStorageMixin"
   ],
   "client": [
   ],

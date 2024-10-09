@@ -1,4 +1,4 @@
-package com.klmod;
+package com.klmod.patch;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -8,13 +8,13 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod("kinetic_pixel_patch")
-public class KineticPixelPatchMod {
+@Mod(KlPatch.MODID)
+public class KlPatch {
 
-    public static final String MODID = "kinetic_pixel_patch";
+    public static final String MODID = "kl_patch";
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public KineticPixelPatchMod() {
+    public KlPatch() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
