@@ -1,7 +1,12 @@
 package com.klmod.patch;
 
+import com.klmod.patch.command.DeleteMasslessShipsCommand;
+import com.mojang.brigadier.CommandDispatcher;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -18,6 +23,12 @@ public class KlPatch {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    @SubscribeEvent
+    public void registerCommands(RegisterCommandsEvent event) {
+        final CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
+        dispatcher.register(DeleteMasslessShipsCommand.register());
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
