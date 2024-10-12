@@ -1,36 +1,30 @@
 package com.klmod.patch;
 
-import com.klmod.patch.command.DeleteMasslessShipsCommand;
+import com.klmod.patch.command.ShipsCommands;
+import com.klmod.patch.config.ShipsConfig;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import net.minecraftforge.fml.config.ModConfig;
 
 @Mod(KlPatch.MODID)
 public class KlPatch {
 
     public static final String MODID = "kl_patch";
-    private static final Logger LOGGER = LogManager.getLogger();
 
     public KlPatch() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(this::commonSetup);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ShipsConfig.getConfig());
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     @SubscribeEvent
     public void registerCommands(RegisterCommandsEvent event) {
         final CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
-        dispatcher.register(DeleteMasslessShipsCommand.register());
+        dispatcher.register(ShipsCommands.register());
     }
 
-    private void commonSetup(FMLCommonSetupEvent event) {
-    }
 }
