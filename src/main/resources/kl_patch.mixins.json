@@ -7,8 +7,7 @@
   "mixins": [
     "RefinedStorageMixin"
   ],
-  "client": [
-  ],
+  "client": [],
   "injectors": {
     "defaultRequire": 1
   }
