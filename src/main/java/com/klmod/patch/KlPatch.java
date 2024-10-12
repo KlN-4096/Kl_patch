@@ -1,15 +1,10 @@
 package com.klmod.patch;
 
-import com.klmod.patch.command.ShipsCommands;
-import com.klmod.patch.config.ShipsConfig;
-import com.mojang.brigadier.CommandDispatcher;
-import net.minecraft.commands.CommandSourceStack;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(KlPatch.MODID)
 public class KlPatch {
@@ -17,14 +12,11 @@ public class KlPatch {
     public static final String MODID = "kl_patch";
 
     public KlPatch() {
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ShipsConfig.getConfig());
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    @SubscribeEvent
-    public void registerCommands(RegisterCommandsEvent event) {
-        final CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
-        dispatcher.register(ShipsCommands.register());
+    private void commonSetup(FMLCommonSetupEvent event) {
     }
-
 }
