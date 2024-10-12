@@ -14,6 +14,7 @@ public class KlPatch {
     public static final String MODID = "kl_patch";
     private static final Logger LOGGER = LogManager.getLogger();
 
+
     public KlPatch() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::commonSetup);
